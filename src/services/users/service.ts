@@ -1,10 +1,9 @@
-// Initializes the `users` service on path `/users`
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Application } from '../../declarations';
-import Model, { IUser } from './users.model';
-import hooks from './users.hooks';
+import Model, { IUser } from './model';
+import hooks from './hooks';
+const createServie = require('feathers-mongoose');
 
-// Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
     'users': IUser & ServiceAddons<any>;
@@ -12,10 +11,17 @@ declare module '../../declarations' {
 }
 
 export default function (app: Application): void {
-  // Initialize our service with any options it requires
-  app.use('/users', Model);
+  app.use('/users', 
+    createServie({
+      Model: Model,
+      lean: true,
+      paginate: {
+        default: 1,
+        max: 1
+      },
+    })
+  );
 
-  // Get our initialized service so that we can register hooks
   const service = app.service('users');
 
   service.hooks(hooks);
