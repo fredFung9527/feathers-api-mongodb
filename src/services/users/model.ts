@@ -8,8 +8,8 @@ export interface User extends Document {
 }
 
 export enum Role {
-  User = 0,
-  Admin = 99
+  User = 'user',
+  Admin = 'admin'
 }
 
 const schema: Schema = new Schema({
@@ -17,7 +17,7 @@ const schema: Schema = new Schema({
   password: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  role: { type: Number, enum: [0, 99], default: 0, required: true },
+  role: { type: String, enum: ['user', 'admin'], default: 'user', required: true },
 });
 
 export default model<User>('User', schema);
