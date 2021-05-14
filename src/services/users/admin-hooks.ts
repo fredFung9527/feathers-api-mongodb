@@ -1,36 +1,33 @@
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
-import { setField } from 'feathers-authentication-hooks';
-import { disallow, discard, iff, isProvider }from 'feathers-hooks-common';
+import checkRole from '../../common-hooks/check-role'
+import { disablePagination }from 'feathers-hooks-common';
+import { Role } from './model'
 
 const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;
 
 export default {
   before: {
-    all: [],
-    find: [ 
+    all: [
       authenticate('jwt'),
-      setField({ from: 'params.user._id', as: 'params.query._id'}),
+      checkRole(Role.Admin),
+    ],
+    find: [
+      disablePagination()
     ],
     get: [ 
-      authenticate('jwt'), 
     ],
     create: [ 
-      hashPassword('password'),
-      iff(isProvider('external'), discard('role')),
+      hashPassword('password') 
     ],
     update: [ 
-      disallow('external')
+      hashPassword('password') 
     ],
     patch: [ 
-      iff(isProvider('external'), discard('password', 'role')),
-      authenticate('jwt'), 
-      setField({ from: 'params.user._id', as: 'params.query._id'})
+      hashPassword('password') 
     ],
     remove: [ 
-      authenticate('jwt'), 
-      setField({ from: 'params.user._id', as: 'params.query._id'}) 
     ]
   },
 

@@ -1,28 +1,28 @@
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Application } from '../../declarations';
 import Model, { User } from './model';
-import hooks from './hooks';
+import hooks from './admin-hooks';
 const createServie = require('feathers-mongoose');
 
 declare module '../../declarations' {
   interface ServiceTypes {
-    'users': User & ServiceAddons<any>;
+    'users-admin': User & ServiceAddons<any>;
   }
 }
 
 export default function (app: Application): void {
-  app.use('/users', 
+  app.use('/users-admin', 
     createServie({
       Model: Model,
       lean: true,
       paginate: {
-        default: 1,
-        max: 1
+        default: 10,
+        max: 100
       },
     })
   );
 
-  const service = app.service('users');
+  const service = app.service('users-admin');
 
   service.hooks(hooks);
 }
