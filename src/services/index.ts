@@ -1,10 +1,9 @@
 import { Application } from '../declarations';
-const requireContext = require('node-require-context')
-import _ from "lodash"
+import users from './users/service';
+import admin_users from './users/admin-service';
+// Don't remove this comment. It's needed to format import lines nicely.
 
 export default function (app: Application): void {
-  const services = requireContext("./", true, /service\.ts$/);
-  _.forEach(services.keys(), moduleId => {
-    app.configure(services(moduleId).default);
-  });
+  app.configure(users);
+  app.configure(admin_users);
 }
