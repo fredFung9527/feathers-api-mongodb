@@ -1,8 +1,8 @@
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
-import checkRole from '../../common-hooks/check-role'
+import checkRole from '../../../common-hooks/check-role'
 import { disablePagination }from 'feathers-hooks-common';
-import { Role } from './model'
+import { Role } from '../model'
 
 const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;

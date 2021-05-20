@@ -3165,6 +3165,11 @@ node-gyp@^7.1.0, node-gyp@^7.1.2:
     tar "^6.0.2"
     which "^2.0.2"
 
+node-require-context@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/node-require-context/-/node-require-context-1.0.0.tgz#022f65e11f346ba56c9d443fcf57142ee344acfd"
+  integrity sha512-hOl3HG1+XG1ULkXiXtWcz7Spey77iYCWaVgzf7aYJruHI1XxENcRb4nHnsXW6GfQLjz8G4gJCO1xCtJciIqXZQ==
+
 nopt@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-5.0.0.tgz#530942bb58a512fccafe53fe210f13a25355dc88"
