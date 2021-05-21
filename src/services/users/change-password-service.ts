@@ -4,6 +4,7 @@ import { MyService } from '@common/classes';
 import * as feathersAuthentication from '@feathersjs/authentication';
 import { User } from '@user-model';
 
+const bcrypt = require('bcryptjs');
 const { authenticate } = feathersAuthentication.hooks;
 
 export default function (app: Application): void {    
@@ -17,6 +18,7 @@ export default function (app: Application): void {
         authenticate('jwt')
       ],
       create: [
+        checking,
         changePassword,
       ]
     }
@@ -25,11 +27,12 @@ export default function (app: Application): void {
 
 export interface UserInput {
   password: string,
+  oldPassword: string
 };
 
-async function changePassword(context: HookContext<UserInput>){
+async function checking(context: HookContext<UserInput>){
   const user = <User>context.params.user;
-  if (!context.data?.password) {
+  if (!context.data?.password || !context.data?.oldPassword) {
     throw new BadRequest('Need More Information', {
       message: [
         { lang: 'en', text: 'Need More Information' },
@@ -38,6 +41,20 @@ async function changePassword(context: HookContext<UserInput>){
       ]
     });
   }
+  if (!await bcrypt.compare(context.data.oldPassword, user.password)) {
+    throw new BadRequest('Wrong Information', {
+      message: [
+        { lang: 'en', text: 'Wrong Information' },
+        { lang: 'cht', text: '錯誤資料' },
+        { lang: 'chs', text: '错误资料' },
+      ]
+    });
+  }
+  return context;
+};
+
+async function changePassword(context: HookContext<UserInput>){
+  const user = <User>context.params.user;
   context.result = await context.app.service('users').patch(user._id, {
     password: context.data?.password,
   })
