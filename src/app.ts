@@ -19,6 +19,8 @@ import channels from './channels';
 import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 import authentication from './authentication';
 import mongodb from './mongodb';
+
+import 'module-alias/register';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
