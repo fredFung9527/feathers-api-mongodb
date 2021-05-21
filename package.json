@@ -26,7 +26,7 @@
   "scripts": {
     "test": "npm run lint && npm run compile && npm run mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
-    "dev": "ts-node-dev --no-notify src/",
+    "dev": "nodemon --watch 'src/**' --ext ts,json --ignore src/**/*.spec.ts --exec ts-node-dev --no-notify src/",
     "start": "npm run compile && cross-env NODE_ENV=production node lib/",
     "mocha": "ts-mocha \"test/**/*.ts\" --recursive --exit",
     "compile": "shx rm -rf lib/ && tsc",
@@ -80,6 +80,7 @@
     "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.25.0",
     "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
     "shx": "^0.3.3",
     "ts-mocha": "^8.0.0",
     "ts-node-dev": "^1.1.6",
@@ -89,6 +90,7 @@
     "@declarations": "lib/declarations",
     "@lib": "lib",
     "@services": "lib/services",
-    "@common-hooks": "lib/common-hooks"
+    "@common": "lib/common",
+    "@user-model": "lib/services/users/model"
   }
 }

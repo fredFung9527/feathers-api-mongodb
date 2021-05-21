@@ -13,7 +13,8 @@
       "@declarations": ["src/declarations"],
       "@src/*": ["src/*"],
       "@services/*": ["src/services/*"],
-      "@common-hooks/*": ["src/common-hooks/*"]
+      "@common/*": ["src/common/*"],
+      "@user-model": ["src/services/users/model"]
     }
   },
   "exclude": [

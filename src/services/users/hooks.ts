@@ -23,9 +23,10 @@ export default {
     update: [ 
       disallow('external')
     ],
-    patch: [ 
+    patch: [
       iff(isProvider('external'), discard('password', 'role')),
-      authenticate('jwt'), 
+      authenticate('jwt'),
+      hashPassword('password'),
       setField({ from: 'params.user._id', as: 'params.query._id'})
     ],
     remove: [ 

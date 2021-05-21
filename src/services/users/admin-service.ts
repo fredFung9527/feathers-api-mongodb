@@ -1,12 +1,11 @@
-import { ServiceAddons } from '@feathersjs/feathers';
-import { Application } from '@declarations';
+import { Application, ServiceAddons } from '@declarations';
 import Model, { User } from './model';
 import hooks from './admin-hooks';
 import createServie from "feathers-mongoose";
 
 declare module '@declarations' {
   interface ServiceTypes {
-    '/users/admin': User & ServiceAddons<any>;
+    'users/admin': User & ServiceAddons<any>;
   }
 }
 
@@ -22,7 +21,7 @@ export default function (app: Application): void {
     })
   );
 
-  const service = app.service('/users/admin');
+  const service = app.service('users/admin');
 
   service.hooks(hooks);
 }

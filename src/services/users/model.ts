@@ -5,12 +5,12 @@ export interface User extends Document {
   firstName: string;
   lastName: string;
   role: Role
-}
+};
 
 export enum Role {
   User = 'user',
   Admin = 'admin'
-}
+};
 
 const schema: Schema = new Schema({
   email: { type: String, required: true, unique: true, index: true },
