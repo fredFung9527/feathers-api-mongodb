@@ -1,4 +1,4 @@
-import { Application } from '../declarations';
+import { Application } from '@declarations';
 const requireContext = require('node-require-context')
 
 export default function (app: Application): void {

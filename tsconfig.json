@@ -5,9 +5,18 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@declarations": ["src/declarations"],
+      "@src/*": ["src/*"],
+      "@services/*": ["src/services/*"],
+      "@common-hooks/*": ["src/common-hooks/*"]
+    }
   },
   "exclude": [
-    "test"
+    "test",
+    "node_modules"
   ]
 }

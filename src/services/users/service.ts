@@ -1,10 +1,10 @@
 import { ServiceAddons } from '@feathersjs/feathers';
-import { Application } from '../../declarations';
+import { Application } from '@declarations';
 import Model, { User } from './model';
 import hooks from './hooks';
-const createServie = require('feathers-mongoose');
+import createServie from "feathers-mongoose";
 
-declare module '../../declarations' {
+declare module '@declarations' {
   interface ServiceTypes {
     'users': User & ServiceAddons<any>;
   }

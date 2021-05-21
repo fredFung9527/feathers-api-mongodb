@@ -1,9 +1,10 @@
 import { Hook, HookContext } from '@feathersjs/feathers';
 import { BadRequest } from '@feathersjs/errors'
+import { Role, User } from "@services/users/model"
 
-export default (role:any):Hook => {
+export default (role:Role):Hook => {
     return (context: HookContext) => {
-        if ((<any>context.params.user).role !== role) throw new BadRequest('No Auth Right', {
+        if ((<User>context.params.user).role !== role) throw new BadRequest('No Auth Right', {
             message: [
                 { lang: 'en', text: 'No Auth Right' },
                 { lang: 'cht', text: '沒有權限' },
