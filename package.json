@@ -30,7 +30,8 @@
     "start": "npm run compile && cross-env NODE_ENV=production node lib/",
     "mocha": "ts-mocha \"test/**/*.ts\" --recursive --exit",
     "compile": "shx rm -rf lib/ && tsc",
-    "add-admin": "node ./add-admin.js"
+    "add-admin-dev": "ts-node-dev src/add-admin.ts",
+    "add-admin": "cross-env NODE_ENV=production node lib/add-admin.js"
   },
   "standard": {
     "env": [

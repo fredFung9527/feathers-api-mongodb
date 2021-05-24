@@ -15,8 +15,8 @@ export enum Role {
 const schema: Schema = new Schema({
   email: { type: String, required: true, unique: true, index: true },
   password: { type: String, required: true },
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  firstName: { type: String },
+  lastName: { type: String },
   role: { type: String, enum: ['user', 'admin'], default: 'user', required: true },
 });
 

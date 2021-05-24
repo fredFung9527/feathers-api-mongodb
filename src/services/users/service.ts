@@ -1,11 +1,11 @@
-import { Application, ServiceAddons } from '@declarations';
+import { Application, ServiceAddons, ServiceMethods } from '@declarations';
 import Model, { User } from './model';
 import hooks from './hooks';
 import createServie from "feathers-mongoose";
 
 declare module '@declarations' {
   interface ServiceTypes {
-    'users': User & ServiceAddons<any>;
+    'users': User & ServiceAddons<User> & ServiceMethods<User>;
   }
 };
 

@@ -1,5 +1,5 @@
 import { Application as ExpressFeathers } from '@feathersjs/express';
-import { Hook, HookContext, ServiceAddons } from '@feathersjs/feathers';
+import { Hook, HookContext, ServiceAddons, ServiceMethods } from '@feathersjs/feathers';
 
 // A mapping of service names to types. Will be extended in service files.
 export interface ServiceTypes {}
@@ -8,5 +8,5 @@ export type Application = ExpressFeathers<ServiceTypes>;
 
 // re-export
 export {
-    Hook, HookContext, ServiceAddons
+    Hook, HookContext, ServiceAddons, ServiceMethods
 };
