@@ -9,12 +9,13 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      // when add a path here, remeber to add one in "_moduleAliases" in package.json also (replace 'src' with 'lib')
+      // when adding a path here, remeber to add one in "_moduleAliases" in package.json also (replace 'src' with 'lib')
       "@declarations": ["src/declarations"],
       "@src/*": ["src/*"],
       "@services/*": ["src/services/*"],
       "@common/*": ["src/common/*"],
-      "@user-model": ["src/services/users/model"]
+      "@user-model": ["src/services/users/model"],
+      "@logger": ["src/logger"]
     }
   },
   "exclude": [

@@ -92,6 +92,7 @@
     "@lib": "lib",
     "@services": "lib/services",
     "@common": "lib/common",
-    "@user-model": "lib/services/users/model"
+    "@user-model": "lib/services/users/model",
+    "@logger": "lib/logger"
   }
 }
