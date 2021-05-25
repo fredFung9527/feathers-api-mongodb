@@ -1,6 +1,7 @@
 # feathers-api-mongodb
 
 > REST API using [Feathers](http://feathersjs.com) and [mongodb](https://www.mongodb.com/)
+> Support Central Authentication
 
 ## Start the API
 

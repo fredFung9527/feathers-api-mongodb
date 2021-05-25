@@ -34,7 +34,7 @@ class MyJwtStrategy extends JWTStrategy {
         });
         resolve(result.data);
       } catch (e) {
-        reject(new error.NotAuthenticated(e?.response?.data?.message || e.message || 'Authentication Fail'));
+        reject(new error.NotAuthenticated(e?.response?.data?.message || e?.message || 'Authentication Fail'));
       }
     })
   };
@@ -67,7 +67,7 @@ class MyLocalStrategy extends LocalStrategy {
         });
         resolve(result.data);
       } catch (e) {
-        reject(new error.NotAuthenticated(e?.response?.data?.message || e.message || 'Authentication Fail'));
+        reject(new error.NotAuthenticated(e?.response?.data?.message || e?.message || 'Authentication Fail'));
       }
     });
   };
