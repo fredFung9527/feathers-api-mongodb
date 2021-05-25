@@ -1,6 +1,9 @@
 import { MyHookContext, Hook } from '@declarations';
 import error from '@feathersjs/errors';
 import { Role } from "@services/users/model";
+import * as feathersAuthentication from '@feathersjs/authentication';
+
+const { authenticate } = feathersAuthentication.hooks;
 
 export function checkRole(role:Role):Hook{
   return (context: MyHookContext) => {
@@ -14,3 +17,10 @@ export function checkRole(role:Role):Hook{
     return context
   }
 };
+
+export function centralAuthenticte() {
+  return authenticate({
+    service: '/central-authentication',
+    strategies: ['jwt']
+  })
+}

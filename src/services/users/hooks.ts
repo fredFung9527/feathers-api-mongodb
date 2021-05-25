@@ -10,12 +10,7 @@ export default {
   before: {
     all: [],
     find: [ 
-      // authenticate('jwt'),
-      // if central authentication is applicable
-      authenticate({
-        service: '/central-authentication',
-        strategies: ['jwt']
-      }),
+      authenticate('jwt'),
       setField({ from: 'params.user._id', as: 'params.query._id'}),
     ],
     get: [ 
