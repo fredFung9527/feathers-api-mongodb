@@ -18,6 +18,7 @@ import appHooks from './app.hooks';
 import channels from './channels';
 import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 import authentication from './authentication';
+import centralAuthentication from './central-authentication';
 import mongodb from './mongodb';
 
 import 'module-alias/register';
@@ -49,6 +50,7 @@ app.configure(mongodb);
 // Configure other middleware (see `middleware/index.ts`)
 app.configure(middleware);
 app.configure(authentication);
+app.configure(centralAuthentication);
 // Set up our services (see `services/index.ts`)
 app.configure(services);
 // Set up event channels (see channels.ts)

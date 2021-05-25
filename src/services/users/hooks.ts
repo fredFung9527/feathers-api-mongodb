@@ -14,7 +14,8 @@ export default {
       setField({ from: 'params.user._id', as: 'params.query._id'}),
     ],
     get: [ 
-      authenticate('jwt'), 
+      authenticate('jwt'),
+      setField({ from: 'params.user._id', as: 'params.query._id'}),
     ],
     create: [ 
       hashPassword('password'),
