@@ -1,11 +1,17 @@
-import { Application, ServiceAddons, ServiceMethods } from '@declarations';
+import { Application } from '@declarations';
 import Model, { User } from './model';
 import hooks from './hooks';
 import createServie from "feathers-mongoose";
 
 declare module '@declarations' {
   interface ServiceTypes {
-    'users': User & ServiceAddons<User> & ServiceMethods<User>;
+    'users': MyServiceType<User>;
+  }
+  interface ModelTypes {
+    'users': User
+  }
+  interface PaginatedTypes {
+    'users': MyPaginated<User>
   }
 };
 

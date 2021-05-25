@@ -1,6 +1,10 @@
 import { ServiceMethods, Params, Id, NullableId } from "@feathersjs/feathers";
 import { Application } from "@declarations";
 
+export {
+  ServiceMethods
+}
+
 export class MyService implements ServiceMethods<any> {
   async find(params: Params) {
     return [];

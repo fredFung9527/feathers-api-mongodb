@@ -1,8 +1,7 @@
-import { Application, HookContext, ServiceAddons } from '@declarations';
+import { Application, MyHookContext } from '@declarations';
 import { BadRequest } from '@feathersjs/errors';
-import { MyService } from '@common/classes';
+import { MyService, ServiceMethods } from '@common/classes';
 import * as feathersAuthentication from '@feathersjs/authentication';
-import { User } from '@user-model';
 
 const bcrypt = require('bcryptjs');
 const { authenticate } = feathersAuthentication.hooks;
@@ -10,7 +9,7 @@ const { authenticate } = feathersAuthentication.hooks;
 export default function (app: Application): void {    
   app.use('/change-password', new MyService());
   
-  const service:ServiceAddons<any> = app.service('change-password');
+  const service:ServiceMethods<any> = app.service('change-password');
 
   service.hooks({
     before: {
@@ -30,8 +29,7 @@ export interface UserInput {
   oldPassword: string
 };
 
-async function checking(context: HookContext<UserInput>){
-  const user = <User>context.params.user;
+async function checking(context: MyHookContext<UserInput>){
   if (!context.data?.password || !context.data?.oldPassword) {
     throw new BadRequest('Need More Information', {
       message: [
@@ -41,7 +39,7 @@ async function checking(context: HookContext<UserInput>){
       ]
     });
   }
-  if (!await bcrypt.compare(context.data.oldPassword, user.password)) {
+  if (!await bcrypt.compare(context.data.oldPassword, context.params.user?.password)) {
     throw new BadRequest('Wrong Information', {
       message: [
         { lang: 'en', text: 'Wrong Information' },
@@ -53,9 +51,8 @@ async function checking(context: HookContext<UserInput>){
   return context;
 };
 
-async function changePassword(context: HookContext<UserInput>){
-  const user = <User>context.params.user;
-  context.result = await context.app.service('users').patch(user._id, {
+async function changePassword(context: MyHookContext<UserInput>){
+  context.result = await context.app.service('users').patch(context.params.user?._id, {
     password: context.data?.password,
   })
 };

@@ -5,7 +5,8 @@ import mongodb from './mongodb';
 import users from './services/users/service';
 import { Application } from './declarations';
 import authentication from './authentication';
-import { Role } from './services/users/model'
+import { Role } from './services/users/model';
+import { PaginatedTypes } from './declarations'
 
 const app: Application = express(feathers());
 app.configure(configuration());
@@ -25,28 +26,28 @@ const main = async () => {
       readline.close();
   
       try {
-        const result = await app.service('users').find({
+        const result = <PaginatedTypes['users']>await app.service('users').find({
           query: { 
             email: email,
           }
         });
-        const currentID = result.data[0] && result.data[0]._id
+        const currentID =  result.data[0]?._id;
         if (currentID) {
           await app.service('users').patch(currentID, {
             password: password,
             role: Role.Admin
-          })
-          console.log(`Updated ${email}: ${currentID}`)
+          });
+          console.log(`Updated ${email}: ${currentID}`);
         } else {
           await app.service('users').create({
             email: email,
             password: password,
             role: Role.Admin
-          })
+          });
           console.log(`Created ${email}`)
         }
       } catch (e) {
-        console.log(e.message)
+        console.log(e.message);
       } finally {
         process.exit(0);
       }
