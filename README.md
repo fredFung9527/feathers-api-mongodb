@@ -1,44 +1,20 @@
 # feathers-api-mongodb
 
-> REST API using feathers and mongodb
+> REST API using [Feathers](http://feathersjs.com) and [mongodb](https://www.mongodb.com/)
 
-## About
+## Start the API
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+1. Install packages: `yarn` or `npm install`
+2. For local development: `yarn dev` or `npm run dev`
+3. For production: `yarn start` or `npm start`
+4. To add an admin user: `yarn add-admin-dev` or `yarn add-admin-dev`, and then input email and password
 
-## Getting Started
-
-Getting up and running is as easy as 1, 2, 3.
-
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
-
-    ```
-    cd path/to/feathers-api-mongodb
-    npm install
-    ```
-
-3. Start your app
-
-    ```
-    npm start
-    ```
+## Tutoral
+1. 
 
 ## Testing
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers help                           # Show all commands
-```
 
 ## Help
 
