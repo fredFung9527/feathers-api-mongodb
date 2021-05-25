@@ -10,7 +10,16 @@
 4. To add an admin user: `yarn add-admin-dev` or `yarn add-admin-dev`, and then input email and password
 
 ## Tutoral
-1. 
+Hint: all files with appendix 'service.ts' in `./src/services` will be automatically configured and registered to the app
+
+1. Add a new table with name {newTable}
+* create a new folder named `newTables` in `./src/services`
+* copy `model.ts` in `./src/services/users` to `./src/services/newTables`, and then modify corresponding schema and typescript interface, replace all 'User' with 'NewTable'
+* copy `service.ts` in `./src/services/users` to `./src/services/newTables`
+* copy `hooks.ts` in `./src/services/users` to `./src/services/newTables`
+
+2. Add an API without table
+* reference to `./src/services/users/change-password-service`
 
 ## Testing
 
