@@ -1,10 +1,9 @@
-import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
 import { checkRole } from '@common/hooks';
 import { disablePagination } from 'feathers-hooks-common';
 import { Role } from './model';
+import { authenticate } from '@common/hooks';
 
-const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;
 
 export default {

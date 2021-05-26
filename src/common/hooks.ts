@@ -3,8 +3,6 @@ import error from '@feathersjs/errors';
 import { Role } from "@services/users/model";
 import * as feathersAuthentication from '@feathersjs/authentication';
 
-const { authenticate } = feathersAuthentication.hooks;
-
 export function checkRole(role:Role):Hook{
   return (context: MyHookContext) => {
     if (context.params.user?.role !== role) throw new error.NotAuthenticated('No Auth Right', {
@@ -18,9 +16,13 @@ export function checkRole(role:Role):Hook{
   }
 };
 
-export function centralAuthenticte() {
-  return authenticate({
+export function centralAuthenticte(method:string):Hook {
+  return feathersAuthentication.hooks.authenticate({
     service: '/central-authentication',
-    strategies: ['jwt']
-  })
-}
+    strategies: [method]
+  });
+};
+
+export function authenticate(method:string):Hook {
+  return feathersAuthentication.hooks.authenticate(method);
+};

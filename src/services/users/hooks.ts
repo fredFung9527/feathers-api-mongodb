@@ -1,9 +1,8 @@
-import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
 import { setField } from 'feathers-authentication-hooks';
-import { disallow, discard, iff, isProvider }from 'feathers-hooks-common';
+import { disallow, discard, iff, isProvider } from 'feathers-hooks-common';
+import { authenticate } from '@common/hooks';
 
-const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;
 
 export default {
