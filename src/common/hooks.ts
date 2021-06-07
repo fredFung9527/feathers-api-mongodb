@@ -16,6 +16,14 @@ export function checkRole(role:Role):Hook{
   }
 };
 
+export function metaHook():Hook{
+  return (context: MyHookContext) => {
+    context.data.createdAt = new Date();
+    context.data.updatedAt = new Date();
+    return context
+  }
+};
+
 export function centralAuthenticte(method:string):Hook {
   return feathersAuthentication.hooks.authenticate({
     service: '/central-authentication',
