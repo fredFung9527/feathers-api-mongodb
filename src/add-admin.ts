@@ -1,3 +1,5 @@
+import 'module-alias/register';
+
 import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
 import express from '@feathersjs/express';

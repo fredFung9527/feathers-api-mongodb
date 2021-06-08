@@ -1,3 +1,5 @@
+import 'module-alias/register';
+
 import path from 'path';
 import favicon from 'serve-favicon';
 import compress from 'compression';
@@ -20,8 +22,6 @@ import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 import authentication from './authentication';
 import centralAuthentication from './central-authentication';
 import mongodb from './mongodb';
-
-import 'module-alias/register';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
