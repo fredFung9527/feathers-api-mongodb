@@ -23,12 +23,12 @@ export default {
     ],
     update: [ 
       hashPassword('password'),
+    ],
+    patch: [
       (context: MyHookContext) => {
         if (context.data.password === '' || context.data.password == null) delete context.data.password;
         return context;
-      }
-    ],
-    patch: [ 
+      },
       hashPassword('password') 
     ],
     remove: [ 
