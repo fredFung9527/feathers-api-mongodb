@@ -24,7 +24,7 @@ export default {
     update: [ 
       hashPassword('password'),
       (context: MyHookContext) => {
-        if (context.data.password === '') delete context.data.password;
+        if (context.data.password === '' || context.data.password == null) delete context.data.password;
         return context;
       }
     ],
