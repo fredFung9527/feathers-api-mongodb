@@ -46,7 +46,7 @@ const main = async () => {
             password: password,
             role: Role.Admin
           });
-          console.log(`Created ${email}`)
+          console.log(`Created ${email}`);
         }
       } catch (e) {
         console.log(e.message);

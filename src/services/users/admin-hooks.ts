@@ -3,6 +3,7 @@ import { checkRole } from '@common/hooks';
 import { disablePagination } from 'feathers-hooks-common';
 import { Role } from './model';
 import { authenticate } from '@common/hooks';
+import { MyHookContext } from '@declarations';
 
 const { hashPassword, protect } = local.hooks;
 
@@ -21,7 +22,11 @@ export default {
       hashPassword('password') 
     ],
     update: [ 
-      hashPassword('password') 
+      hashPassword('password'),
+      (context: MyHookContext) => {
+        if (context.data.password === '') delete context.data.password;
+        return context;
+      }
     ],
     patch: [ 
       hashPassword('password') 
