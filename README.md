@@ -7,8 +7,8 @@
 
 1. Install packages: `yarn` or `npm install`
 2. For local development: `yarn dev` or `npm run dev`
-3. For production: `yarn start` or `npm start`
-4. To add an admin user: `yarn add-admin-dev` or `yarn add-admin-dev`, and then input email and password
+3. For production: `yarn build` and then `yarn start` or `npm build` and then `npm start`
+4. To add an admin user: `yarn add-admin-dev` or `yarn add-admin`, and then input email and password
 
 ## Tutoral
 Hint: all files with appendix 'service.ts' in `./src/services` will be automatically configured and registered to the app

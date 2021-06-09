@@ -24,14 +24,14 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run lint && npm run compile && npm run mocha",
+    "test": "npm run lint && npm run build && npm run mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
-    "dev": "nodemon --watch 'src/**' --ext ts,json --ignore src/**/*.spec.ts --exec ts-node-dev --no-notify src/",
-    "start": "npm run compile && cross-env NODE_ENV=production node lib/",
+    "dev": "nodemon --watch 'src/**' --ext ts,json --ignore src/**/*.spec.ts --exec ts-node-dev --no-notify -r tsconfig-paths/register src/",
+    "build": "shx rm -rf lib/ && tsc",
+    "start": "cross-env NODE_ENV=production node -r ./tsconfig-paths-bootstrap.js lib/",
     "mocha": "ts-mocha \"test/**/*.ts\" --recursive --exit",
-    "compile": "shx rm -rf lib/ && tsc",
-    "add-admin-dev": "ts-node-dev src/add-admin.ts",
-    "add-admin": "cross-env NODE_ENV=production node lib/add-admin.js"
+    "add-admin-dev": "ts-node-dev -r tsconfig-paths/register src/add-admin.ts",
+    "add-admin": "cross-env NODE_ENV=production node -r ./tsconfig-paths-bootstrap.js lib/add-admin.js"
   },
   "standard": {
     "env": [
@@ -61,7 +61,6 @@
     "feathers-mongoose": "^8.3.3",
     "helmet": "^4.6.0",
     "lodash": "^4.17.21",
-    "module-alias": "^2.2.2",
     "mongodb": "^3.6.6",
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.12.7",
@@ -69,6 +68,7 @@
     "node-require-context": "^1.0.0",
     "npm": "^7.13.0",
     "serve-favicon": "^2.5.0",
+    "tsconfig-paths": "^3.9.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -89,13 +89,5 @@
     "ts-mocha": "^8.0.0",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
-  },
-  "_moduleAliases": {
-    "@declarations": "lib/declarations",
-    "@lib": "lib",
-    "@services": "lib/services",
-    "@common": "lib/common",
-    "@user-model": "lib/services/users/model",
-    "@logger": "lib/logger"
   }
 }

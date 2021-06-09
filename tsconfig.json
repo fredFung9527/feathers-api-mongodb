@@ -9,7 +9,6 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      // when adding a path here, remeber to add one in "_moduleAliases" in package.json also (replace 'src' with 'lib')
       "@declarations": ["src/declarations"],
       "@src/*": ["src/*"],
       "@services/*": ["src/services/*"],
